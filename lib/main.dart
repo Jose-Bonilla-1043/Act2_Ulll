@@ -14,11 +14,26 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         body: Stack(
           children: [
-            // Fondo de pantalla
+            // Fondo de pantalla con imagen de red
             Positioned.fill(
-              child: Image.asset(
-                'assets/Fondo.png',
+              child: Image.network(
+                'https://raw.githubusercontent.com/Jose-Bonilla-1043/Imagenes_UIII/refs/heads/main/image.png',
                 fit: BoxFit.cover,
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return Center(
+                    child: CircularProgressIndicator(
+                      value: loadingProgress.expectedTotalBytes != null
+                          ? loadingProgress.cumulativeBytesLoaded /
+                              loadingProgress.expectedTotalBytes!
+                          : null,
+                    ),
+                  );
+                },
+                errorBuilder: (context, error, stackTrace) => Container(
+                  color: Colors.grey[300],
+                  child: const Center(child: Icon(Icons.error)),
+                ),
               ),
             ),
             // Contenido
@@ -43,7 +58,7 @@ class MyApp extends StatelessWidget {
                       // Campo de usuario
                       Container(
                         decoration: BoxDecoration(
-                          color: Color.fromRGBO(245, 245, 245, 0.9),
+                          color: const Color.fromRGBO(245, 245, 245, 0.9),
                           borderRadius: BorderRadius.circular(25),
                         ),
                         child: const TextField(
@@ -60,7 +75,7 @@ class MyApp extends StatelessWidget {
                       // Campo de contraseña
                       Container(
                         decoration: BoxDecoration(
-                          color: Color.fromRGBO(245, 245, 245, 0.9),
+                          color: const Color.fromRGBO(245, 245, 245, 0.9),
                           borderRadius: BorderRadius.circular(25),
                         ),
                         child: const TextField(
@@ -106,7 +121,7 @@ class MyApp extends StatelessWidget {
                           child: const Text(
                             'Forget your password?',
                             style: TextStyle(
-                              color: Color.fromARGB(255, 255, 255, 255),
+                              color: Colors.white,
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
                               letterSpacing: 0.5,
@@ -114,7 +129,7 @@ class MyApp extends StatelessWidget {
                           ),
                         ),
                       ),
-                      // Espacio aumentado a 150 (antes era 120)
+                      // Espacio aumentado a 150
                       const SizedBox(height: 150),
                       // Sección inferior agrupada
                       Column(
@@ -133,7 +148,7 @@ class MyApp extends StatelessWidget {
                                 child: Text(
                                   'or connect with',
                                   style: TextStyle(
-                                    color: Color.fromRGBO(0, 0, 0, 0.8),
+                                    color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.8),
                                     fontSize: 14,
                                   ),
                                 ),
@@ -173,14 +188,14 @@ class MyApp extends StatelessWidget {
                               text: TextSpan(
                                 text: "Don't have an account? ",
                                 style: TextStyle(
-                                  color: Color.fromRGBO(0, 0, 0, 0.8),
+                                  color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.8),
                                   fontSize: 14,
                                 ),
                                 children: const [
                                   TextSpan(
                                     text: 'Sign up',
                                     style: TextStyle(
-                                      color: Color.fromARGB(255, 24, 67, 223),
+                                      color: Color(0xFF4285F4),
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -237,7 +252,7 @@ class MyApp extends StatelessWidget {
                 ),
                 child: Icon(
                   icon,
-                  color: const Color.fromARGB(255, 0, 0, 0),
+                  color: Colors.white,
                   size: 24,
                 ),
               ),
@@ -246,7 +261,7 @@ class MyApp extends StatelessWidget {
                 label,
                 style: const TextStyle(
                   fontSize: 12,
-                  color: Color.fromARGB(255, 0, 0, 0),
+                  color: Colors.white,
                 ),
               ),
             ],
