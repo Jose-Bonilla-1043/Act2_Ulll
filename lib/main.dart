@@ -14,7 +14,6 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         body: Stack(
           children: [
-            // Fondo de pantalla con imagen de red
             Positioned.fill(
               child: Image.network(
                 'https://raw.githubusercontent.com/Jose-Bonilla-1043/Imagenes_UIII/refs/heads/main/image.png',
@@ -36,11 +35,10 @@ class MyApp extends StatelessWidget {
                 ),
               ),
             ),
-            // Contenido
             SafeArea(
               child: SingleChildScrollView(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 40.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -57,23 +55,47 @@ class MyApp extends StatelessWidget {
                       const SizedBox(height: 15),
                       // Campo de usuario
                       Container(
+                        width: 300,
                         decoration: BoxDecoration(
                           color: const Color.fromRGBO(245, 245, 245, 0.9),
                           borderRadius: BorderRadius.circular(25),
                         ),
-                        child: const TextField(
+                        child: TextField(
                           decoration: InputDecoration(
                             border: InputBorder.none,
-                            contentPadding: EdgeInsets.all(16),
+                            contentPadding: const EdgeInsets.all(16),
                             hintText: 'Enter username',
-                            hintStyle: TextStyle(color: Colors.grey),
-                            prefixIcon: Icon(Icons.person_outline, color: Colors.grey),
+                            hintStyle: const TextStyle(color: Colors.grey),
+                            prefixIcon: const Icon(Icons.person_outline, color: Colors.grey),
+                            suffixIcon: Padding(
+                              padding: const EdgeInsets.only(right: 12.0),
+                              child: SizedBox(
+                                width: 20,
+                                height: 20,
+                                child: Center(
+                                  child: Container(
+                                    width: 26,
+                                    height: 26,
+                                    decoration: const BoxDecoration(
+                                      color: Colors.green,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: const Icon(
+                                      Icons.check,
+                                      color: Colors.white,
+                                      size: 19,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ),
                       const SizedBox(height: 12),
                       // Campo de contraseña
                       Container(
+                        width: 300,
                         decoration: BoxDecoration(
                           color: const Color.fromRGBO(245, 245, 245, 0.9),
                           borderRadius: BorderRadius.circular(25),
@@ -92,7 +114,7 @@ class MyApp extends StatelessWidget {
                       const SizedBox(height: 15),
                       // Botón Login
                       SizedBox(
-                        width: double.infinity,
+                        width: 300,
                         height: 50,
                         child: ElevatedButton(
                           onPressed: () {},
@@ -129,12 +151,10 @@ class MyApp extends StatelessWidget {
                           ),
                         ),
                       ),
-                      // Espacio aumentado a 150
                       const SizedBox(height: 150),
-                      // Sección inferior agrupada
+                      // Sección inferior
                       Column(
                         children: [
-                          // Divisor "or connect with"
                           Row(
                             children: [
                               const Expanded(
@@ -162,7 +182,6 @@ class MyApp extends StatelessWidget {
                             ],
                           ),
                           const SizedBox(height: 35),
-                          // Botones sociales
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -182,7 +201,6 @@ class MyApp extends StatelessWidget {
                             ],
                           ),
                           const SizedBox(height: 45),
-                          // Texto de registro
                           Center(
                             child: RichText(
                               text: TextSpan(
